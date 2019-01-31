@@ -1,18 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import { Navbar } from '../Navbar';
+// components
 
 const Dashboard = () => {
-  const title = "Dots ..";
-  const links = [
-    { name: 'Dashboard', url: '/' },
-    { name: 'Create Dot', url: '/create-dot' },
-  ];
   return (
     <div>
-      <Navbar title={title} links={links} />
-      <Link to="/create-dot">Create Dot</Link>
       <section>Dashboard</section>
     </div>
   )

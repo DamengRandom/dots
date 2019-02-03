@@ -1,9 +1,9 @@
 import React from 'react';
-
+import DotsForm from './DotsForm';
 const CreateDot = () => {
   return (
     <div>
-      <section>CreateDot</section>
+      <DotsForm />
     </div>
   )
 }

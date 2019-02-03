@@ -2,16 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Navbar } from "dmjs-react-components";
 // components
-import { Dashboard } from '../containers/Dashboard';
+import Dashboard from '../containers/Dashboard';
 import { CreateDot } from '../containers/Dots/CreateDot';
-import { NotFound } from '../containers/NotFound';
+import NotFound from '../containers/NotFound';
+import { title, links } from '../configs';
 
 const Routes = () => {
-  const title = "Dots ..";
-  const links = [
-    { type: 'route', name: 'Create Dot', url: '/create-dot' },
-    { type: 'icon', target: '_blank', href: 'https://github.com/DamengRandom', icon: 'fab fa-github' },
-  ];
   return (
     <BrowserRouter>
       <div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
+import { dotOptions } from '../../configs';
 
 class DotsFormWrapper extends React.Component {
   constructor(props) {
@@ -26,16 +27,18 @@ class DotsFormWrapper extends React.Component {
           { this.handleShowError(touched.cost, errors.cost) }
         </div>
         <div>
-          <Field type="text" name="tag" component="select" placeholder="Category tag">
-            <option value="option">Please select category tag</option>
-            <option value="commute">Commute</option>
-            <option value="bills">Electricity | Gas | Water Bill</option>
-            <option value="loan">Home Loan</option>
-            <option value="kid">Kid</option>
-            <option value="eat">Live Goods</option>
-            <option value="pocket">Pocket Money</option>
-            <option value="strata">Strata</option>
-            <option value="other">Other</option>
+          <Field type="text"
+            name="tag"
+            component="select"
+            placeholder="Category tag">
+            {
+              dotOptions.map(
+                option => <option key={option.value}
+                  value={option.value}>
+                  {option.name}
+                </option>
+              )
+            }
           </Field>
           { this.handleShowError(touched.tag, errors.tag) }
         </div>
@@ -59,13 +62,17 @@ const DotsForm = withFormik({
     }
   },
   validationSchema: Yup.object().shape({
-    dot: Yup.string().max(10).required(),
-    cost: Yup.string().matches(/^\d+(\.\d{1,2})?$/, 'Cost must be at most 2 decmial places').required(),
+    dot: Yup.string().max(100).required(),
+    cost: Yup.string()
+            .matches(/^\d+(\.\d{1,2})?$/,
+              'Cost must be at most 2 decmial places')
+            .required(),
     tag: Yup.string().required(),
     date: Yup.date().required()
   }),
-  handleSubmit(values) {
-    console.log(values);
+  handleSubmit(values, { onSubmit }) {
+    console.log(onSubmit(values), values);
+    // return onSubmit(values);
   }
 })(DotsFormWrapper);
 

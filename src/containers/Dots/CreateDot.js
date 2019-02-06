@@ -6,8 +6,7 @@ import { createDot } from '../../actions/dots';
 const CreateDotWrapper = (props) => {
   return (
     <div>
-      <DotsForm onSubmit={(dot) => {
-        console.log('current dot: ', dot);
+      <DotsForm formSubmit={dot => {
         props.dispatch(createDot(dot));
         props.history.push('/');
       }} />

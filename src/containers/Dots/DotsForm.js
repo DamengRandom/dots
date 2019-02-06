@@ -7,6 +7,7 @@ class DotsFormWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.handleShowError = this.handleShowError.bind(this);
+    console.log('props ', props);
   }
 
   handleShowError(touched, error) {
@@ -14,10 +15,10 @@ class DotsFormWrapper extends React.Component {
   }
 
   render() {
-    const { touched, errors } = this.props;
-    // console.log(values, errors, touched);
+    const { touched, errors, values, formSubmit } = this.props;
+
     return (
-      <Form>
+      <Form onSubmit={() => formSubmit(values)}>
         <div>
           <Field type="text" name="dot" placeholder="Dot(s)"/>
           { this.handleShowError(touched.dot, errors.dot) }
@@ -70,10 +71,11 @@ const DotsForm = withFormik({
     tag: Yup.string().required(),
     date: Yup.date().required()
   }),
-  handleSubmit(values, { onSubmit }) {
-    console.log(onSubmit(values), values);
-    // return onSubmit(values);
-  }
+  // handleSubmit(values, { setSubmitting }) {
+    // console.log( values);
+  //   // return onSubmit(values);
+    // setSubmitting(false);
+  // }
 })(DotsFormWrapper);
 
 export default DotsForm;

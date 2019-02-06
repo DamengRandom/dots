@@ -1,13 +1,13 @@
 import { CREATE_DOT, UPDATE_DOT, READ_DOTS, DELETE_DOT } from '../constants';
 import uuid from 'uuid';
 // CREATE_DOT
-export const createDot = ({ title = '', contents = '', media = '', tag = '' }={}) => ({
+export const createDot = ({ cost = '', date = '', dot = '', tag = '' }={}) => ({
   type: CREATE_DOT,
   dot: {
     id: uuid(),
-    title,
-    contents,
-    media,
+    cost,
+    date,
+    dot,
     tag
   }
 });

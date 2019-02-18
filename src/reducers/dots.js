@@ -4,24 +4,34 @@ export const defaultDotState = [];
 export default (state = defaultDotState, action) => {
   switch(action.type) {
     case CREATE_DOT:
-      return [
+      console.log(action);
+      return {
         ...state,
-        action.dot
-      ];
+        dots: [...state.dots, action.dot]
+      };
     case READ_DOTS:
-      return action.payload;
+      return {
+        ...state,
+        dots: action.payload
+      };
     case UPDATE_DOT:
-      return state.map(dot => {
-        if(dot.id === action.id) {
-          return {
-            ...dot,
-            ...action.updates
+      return {
+        ...state,
+        dots: state.dots.map(dot => {
+          if(dot.id === action.updates.id) {
+            return {
+              ...dot,
+              ...action.updates
+            }
           }
-        }
-        return dot;
-      });
+          return dot;
+        })
+      };
     case DELETE_DOT:
-      return state.filter(dot => dot.id !== action.id);
+      return {
+        ...state,
+        dots: state.dots.filter(dot => dot.id !== action.id)
+      };
     default:
       return state;
   }

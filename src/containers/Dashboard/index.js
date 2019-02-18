@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // components
 import { Navbar } from 'dmjs-react-components';
 import { title, links } from '../../configs';
+import { readDots } from '../../actions/dots';
 
 const StickyBar = styled.div`
   position: fixed;
@@ -20,19 +21,20 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       showStickyBar: false,
-      showDots: []
+      // showDots: []
     }
     this.handleNavScroll = this.handleNavScroll.bind(this);
   }
 
   componentDidMount() {
+    this.props.readDots(); // render lists
     window.addEventListener('scroll', this.handleNavScroll);
     // this.setState({
     //   showDots: JSON.parse(localStorage.getItem('dots'))
     // });
-    this.setState({
-      showDots: this.props.dots
-    });
+    // this.setState({
+    //   showDots: this.props.dots
+    // });
   }
 
   handleNavScroll = () => {
@@ -60,16 +62,17 @@ class Dashboard extends React.Component {
         <div>
           List:
           {
-            this.state.showDots.map((dot, index) => {
-              // dot = JSON.parse(dot)
-              return (
-                <div key={index}>
-                  <h3>{dot.dot}</h3>
-                  <p><i>{dot.cost}</i></p>
-                  <p><i>{dot.date}</i></p>
-                </div>
-              );
-            })
+            // this.state.showDots.map((dot, index) => {
+            //   // dot = JSON.parse(dot)
+            //   return (
+            //     <div key={index}>
+            //       <h3>{dot.dot}</h3>
+            //       <p><i>{dot.cost}</i></p>
+            //       <p><i>{dot.date}</i></p>
+            //     </div>
+            //   );
+            // })
+            console.log('dots? ', this.props.dots)
           }
         </div>
       </div>
@@ -79,8 +82,13 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    dots: state.dots
+    dots: state.dot.dots
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = {readDots};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

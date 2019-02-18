@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 // components
 import { Navbar } from 'dmjs-react-components';
 import { title, links } from '../../configs';
+import { readDots } from '../../actions/dots';
 
 const StickyBar = styled.div`
   position: fixed;
@@ -19,12 +21,20 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       showStickyBar: false,
+      // showDots: []
     }
     this.handleNavScroll = this.handleNavScroll.bind(this);
   }
 
   componentDidMount() {
+    this.props.readDots(); // render lists
     window.addEventListener('scroll', this.handleNavScroll);
+    // this.setState({
+    //   showDots: JSON.parse(localStorage.getItem('dots'))
+    // });
+    // this.setState({
+    //   showDots: this.props.dots
+    // });
   }
 
   handleNavScroll = () => {
@@ -49,10 +59,36 @@ class Dashboard extends React.Component {
             <Navbar title={title} links={links} />
           </StickyBar>
         }
-        <section>Dashboard</section>
+        <div>
+          List:
+          {
+            // this.state.showDots.map((dot, index) => {
+            //   // dot = JSON.parse(dot)
+            //   return (
+            //     <div key={index}>
+            //       <h3>{dot.dot}</h3>
+            //       <p><i>{dot.cost}</i></p>
+            //       <p><i>{dot.date}</i></p>
+            //     </div>
+            //   );
+            // })
+            console.log('dots? ', this.props.dots)
+          }
+        </div>
       </div>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    dots: state.dot.dots
+  }
+}
+
+const mapDispatchToProps = {readDots};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

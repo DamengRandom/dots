@@ -8,7 +8,7 @@ export const saveDot = (dot) => {
 }
 
 export const fetchDots = () => {
-  return axios.get(baseURL).then(res => console.log(res.data) || res.data);
+  return axios.get(baseURL).then(res => res.data);
 }
 
 export const replaceDot = (updates) => {

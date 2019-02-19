@@ -4,7 +4,6 @@ export const defaultDotState = [];
 export default (state = defaultDotState, action) => {
   switch(action.type) {
     case CREATE_DOT:
-      console.log(action);
       return {
         ...state,
         dots: [...state.dots, action.dot]

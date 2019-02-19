@@ -72,7 +72,7 @@ export const createDot = (dot) => {
 
 export const readDots = () => {
   return dispatch =>
-    fetchDots().then(res => console.log('res', res) || dispatch(readDotsAction(res)));
+    fetchDots().then(res => dispatch(readDotsAction(res)));
 }
 
 export const updateDot = (updates) => {

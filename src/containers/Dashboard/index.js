@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 // components
 import { Navbar } from 'dmjs-react-components';
 import { title, links } from '../../configs';
 import ReadDots from '../Dots/ReadDots';
+import { readDots } from '../../actions/dots';
 
 const StickyBar = styled.div`
   position: fixed;
@@ -22,6 +24,7 @@ class Dashboard extends React.Component {
       showStickyBar: false,
     }
     this.handleNavScroll = this.handleNavScroll.bind(this);
+    this.props.readDots();
   }
 
   componentDidMount() {
@@ -51,11 +54,26 @@ class Dashboard extends React.Component {
         }
         <div>
           List:
-          <ReadDots />
+          {
+            
+              this.props.dots && <ReadDots />
+            
+          }
         </div>
       </div>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    dots: state.dot.dots
+  }
+};
+
+const mapDispatchToProps = { readDots };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

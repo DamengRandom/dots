@@ -8,17 +8,17 @@ class ReadDots extends React.Component {
     this.props.readDots();
   }
 
-  renderDots = () => {
-    return this.props.dots.map(dot => (
-        <SingleDot key={dot.id} dot={dot} />
-      ));
-  };
-
   render() {
+    const renderDots = (dots) => {
+      return dots.map(dot => {
+        console.log('whats dot? ', dot);
+        return <SingleDot key={`${dot.id}-${dot.dot}`} dot={dot} />
+      });
+    };
     return (
       <div>
         { this.props.dots && this.props.dots.length > 0 ?
-          this.renderDots() : <p>No data yet ..</p> }
+          renderDots(this.props.dots) : <p>No data yet ..</p> }
       </div>
     );
   }

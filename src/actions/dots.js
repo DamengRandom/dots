@@ -45,7 +45,7 @@ export const readDots = () => {
 }
 
 export const updateDot = (updates) => {
-  return dispatch =>
+  return dispatch => console.log(updates) ||
     replaceDot(updates).then(res => dispatch(updateDotAction(res)));
 }
 

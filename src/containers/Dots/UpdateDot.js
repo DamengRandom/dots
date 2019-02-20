@@ -4,16 +4,21 @@ import { updateDot } from '../../actions/dots';
 import DotsForm from './DotsForm';
 
 export const UpdateDotWrapper = (props) => {
+  const currentDitID = props.match.params.id;
   const passOldDot = () => {
     return props.dots.find(dot =>
-      dot.id === props.match.params.id); 
+      dot.id === currentDitID); 
   }
   return (
     <DotsForm oldDot={props.dots && passOldDot()}
       formSubmit={updatedDot => {
-        console.log('updateDot', updateDot);
-        props.updateDot(updatedDot);
-        props.history.push('/');
+        console.log('updateDot', updatedDot);
+        const updatedDotObject = {
+          ...updatedDot,
+          id: currentDitID
+        }
+        props.updateDot(updatedDotObject);
+        // props.history.push('/');
       }}
     />
   );

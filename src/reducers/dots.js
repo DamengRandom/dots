@@ -17,10 +17,10 @@ export default (state = defaultDotState, action) => {
       return {
         ...state,
         dots: state.dots.map(dot => {
-          if(dot.id === action.updates.id) {
+          if(dot.id === action.payload.id) {
             return {
               ...dot,
-              ...action.updates
+              ...action.payload
             }
           }
           return dot;

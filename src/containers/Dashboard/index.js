@@ -55,9 +55,7 @@ class Dashboard extends React.Component {
         <div>
           List:
           {
-            
-              this.props.dots && <ReadDots />
-            
+            this.props.dots && <ReadDots dots={this.props.dots} />
           }
         </div>
       </div>

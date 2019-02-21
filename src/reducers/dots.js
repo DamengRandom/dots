@@ -6,7 +6,7 @@ export default (state = defaultDotState, action) => {
     case CREATE_DOT:
       return {
         ...state,
-        dots: [...state.dots, action.dot]
+        dots: [...state.dots, action.payload]
       };
     case READ_DOTS:
       return {

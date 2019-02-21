@@ -18,7 +18,7 @@ export const UpdateDotWrapper = (props) => {
           id: currentDitID
         }
         props.updateDot(updatedDotObject);
-        // props.history.push('/');
+        props.history.push('/');
       }}
     />
   );

@@ -8,6 +8,7 @@ const CreateDotWrapper = (props) => {
     <div>
       <DotsForm formSubmit={ dot => {
         props.createDot(dot);
+        props.history.push('/');
         // setTimeout(() => props.history.push('/'), 2000);
       }} />
     </div>

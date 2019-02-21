@@ -29,7 +29,7 @@ export default (state = defaultDotState, action) => {
     case DELETE_DOT:
       return {
         ...state,
-        dots: state.dots.filter(dot => dot.id !== action.id)
+        dots: state.dots.filter(dot => dot.id !== action.payload)
       };
     default:
       return state;

@@ -21,7 +21,7 @@ const readDotsAction = (dots) => ({
 });
 
 // DELETE_DOT action
-const deleteDotAction = ({ id }) => ({
+const deleteDotAction = (id) => ({
   type: DELETE_DOT,
   payload: id
 });

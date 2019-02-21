@@ -4,6 +4,7 @@ import { Navbar } from "dmjs-react-components";
 // components
 import Dashboard from '../containers/Dashboard';
 import { CreateDot } from '../containers/Dots/CreateDot';
+import { UpdateDot } from '../containers/Dots/UpdateDot';
 import NotFound from '../containers/NotFound';
 import { title, links } from '../configs';
 
@@ -15,6 +16,7 @@ const Routes = () => {
         <Switch>
           <Route path="/" component={Dashboard} exact={true} />
           <Route path="/create-dot" component={CreateDot} exact={true} />
+          <Route path="/update-dot/:id" component={UpdateDot} exact={true} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
